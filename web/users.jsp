@@ -14,12 +14,14 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/navbar.jspf" %>
-        <div class="m-2">            
-            <h1>Users</h1>
-            <%for(String user:users) {%>
-                <div><%= user %></div>
-            <%}%>
-        </div>
+        <% if (userName != null) { %> 
+            <div class="m-2">            
+                <h1>Users</h1>
+                <%for(String user:users) {%>
+                    <div><%= user %></div>
+                <%}%>
+            </div>
+        <% } %>
         <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
     </body>
 </html>
