@@ -11,7 +11,7 @@
   </ul>
 </div>
 
-<p>This project was built to understand a the usage of HTTP response in a Java EE JSP Web Application</p>
+<p>This project was built to understand the usage of HTTP response in a Java EE JSP Web Application</p>
 
 <h3>Stack</h3>
 
