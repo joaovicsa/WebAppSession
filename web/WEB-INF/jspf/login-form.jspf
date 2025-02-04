@@ -7,9 +7,9 @@
     <form>
         <div class="mb-3">
             <label for="formName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="formName" name="session-name" />
+            <input required type="text" class="form-control" id="formName" name="session-name" />
             <hr />
-            <input type="submit" name="session-login" class="btn btn-primary" />
+            <input type="submit" name="session-login" class="btn btn-primary" placeholder="Send" />
         </div>
     </form> 
   </div>
