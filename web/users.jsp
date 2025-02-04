@@ -16,7 +16,9 @@
         <%@include file="WEB-INF/jspf/navbar.jspf" %>
         <div class="m-2">            
             <h1>Users</h1>
-            <div>Page Content</div>
+            <%for(String user:users) {%>
+                <div><%= user %></div>
+            <%}%>
         </div>
         <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
     </body>

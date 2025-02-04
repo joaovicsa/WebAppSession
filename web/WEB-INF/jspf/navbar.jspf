@@ -1,5 +1,24 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<%
+    if(application.getAttribute("users")==null) {
+        application.setAttribute("users", new java.util.ArrayList());
+    }
+    java.util.ArrayList<String> users = (java.util.ArrayList) application.getAttribute("users");
+    
+    if(request.getParameter("session-login")!= null){
+        session.setAttribute("name", request.getParameter("session-name"));
+        users.add((String) session.getAttribute("name"));
+        response.sendRedirect(request.getRequestURI());
+    } else if (request.getParameter("session-logout") != null){
+        int i = users.indexOf((String) session.getAttribute("name"));
+        session.removeAttribute("name");
+        if(i>=0) users.remove(i);
+        response.sendRedirect(request.getRequestURI());
+    }
+    String userName = (String) session.getAttribute("name");
+%>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
@@ -18,17 +37,20 @@
           <a class="nav-link" href="${pageContext.request.contextPath}/users.jsp">Users</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <span class="navbar-text me-2">
-             Hi, [User]
-        </span>
-        <button class="btn btn-outline-success" type="submit">Leave</button>
-      </form>
+      <%if(userName!=null) {%>
+        <form class="d-flex">
+          <span class="navbar-text me-2">
+               Hi, <%=userName%>
+          </span>
+          <button class="btn btn-outline-success" type="submit" name="session-logout">Leave</button>
+        </form>
+      <%}%>  
     </div>
   </div>
 </nav>
 
-        <div class="m-2">
-            
-          <%@include file="login-form.jspf" %>
-        </div>
+<%if(userName==null){%>
+    <div class="m-2">
+        <%@include file="login-form.jspf" %>
+    </div>
+<%}%>
